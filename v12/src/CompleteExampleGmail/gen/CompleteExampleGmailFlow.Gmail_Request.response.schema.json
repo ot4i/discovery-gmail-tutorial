@@ -1,0 +1,190 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "displayOrder": 20,
+        "title": "Message ID",
+        "description": "The message ID of an email message.",
+        "type": "string"
+      },
+      "threadId": {
+        "displayOrder": 9,
+        "title": "Thread ID",
+        "description": "The ID of the thread containing the message",
+        "type": "string"
+      },
+      "labelIds": {
+        "displayOrder": 10,
+        "title": "Label IDs",
+        "description": "A list of IDs of the labels that are applied to the message",
+        "type": "array"
+      },
+      "snippet": {
+        "displayOrder": 11,
+        "title": "Snippet",
+        "description": "A preview of the message that displays a few lines from the message's body",
+        "type": "string"
+      },
+      "historyId": {
+        "displayOrder": 12,
+        "title": "History ID",
+        "description": "The history ID that is assigned to a message in the mailbox",
+        "type": "string"
+      },
+      "internalDate": {
+        "displayOrder": 13,
+        "title": "Internal date",
+        "description": "The internal message creation timestamp, which determines the ordering in the Inbox in ISO 8601 UTC format, YYYY-MM-DDTHH:mm:ss.SSZ",
+        "type": "string",
+        "format": "date-time"
+      },
+      "sizeEstimate": {
+        "displayOrder": 14,
+        "title": "Size estimate",
+        "description": "The estimated size of the message in bytes",
+        "type": "number"
+      },
+      "payload": {
+        "displayOrder": 15,
+        "title": "Payload",
+        "description": "The parsed email structure in the message parts",
+        "type": "object",
+        "properties": {
+          "partId": {
+            "displayOrder": 1,
+            "title": "Part ID",
+            "description": "The ID of the message part. This ID cannot be changed.",
+            "type": "string"
+          },
+          "mimeType": {
+            "displayOrder": 2,
+            "title": "MIME type",
+            "description": "The Multipurpose Internet Mail Extensions (MIME) type of the message part",
+            "type": "string"
+          },
+          "filename": {
+            "displayOrder": 3,
+            "title": "File name",
+            "description": "The file name of an attachment. Only applicable if the message has an attachment.",
+            "type": "string"
+          },
+          "headers": {
+            "displayOrder": 4,
+            "title": "Headers",
+            "description": "The list of headers on the message part. For the top-level message part, that represents the entire message payload, it contains the standard RFC 2822 email headers such as To, From, and Subject.",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "displayOrder": 11,
+                  "title": "Header name",
+                  "description": "The name of the header before the separator (:). For example, 'To'.",
+                  "type": "string"
+                },
+                "value": {
+                  "displayOrder": 11,
+                  "title": "Header value",
+                  "description": "The value of the header after the separator (:). For example, 'username@example.com'.",
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "additionalItems": false
+          },
+          "body": {
+            "displayOrder": 16,
+            "title": "Body",
+            "description": "The body content of the message",
+            "type": "object",
+            "properties": {
+              "size": {
+                "displayOrder": 1,
+                "title": "Body size",
+                "description": "The size of the message part body in bytes",
+                "type": "string"
+              },
+              "data": {
+                "displayOrder": 2,
+                "title": "Body data",
+                "description": "The data or contents of the message part body",
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "parts": {
+            "displayOrder": 16,
+            "title": "Parts",
+            "description": "The child Multipurpose Internet Mail Extensions (MIME) message parts",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "partId": {
+                  "displayOrder": 1,
+                  "title": "Part ID",
+                  "description": "The ID of the child MIME message part",
+                  "type": "string"
+                },
+                "mimeType": {
+                  "displayOrder": 2,
+                  "title": "MIME type",
+                  "description": "The Multipurpose Internet Mail Extensions (MIME) type of a child MIME message part",
+                  "type": "string"
+                },
+                "filename": {
+                  "displayOrder": 2,
+                  "title": "File name",
+                  "description": "The file name of an attachment. Only applicable if the message has an attachment.",
+                  "type": "string"
+                },
+                "headers": {
+                  "displayOrder": 4,
+                  "title": "Headers",
+                  "description": "The list of headers on the child MIME message part",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "displayOrder": 11,
+                        "title": "Header name",
+                        "description": "The name of the header on the child MIME message part",
+                        "type": "string"
+                      },
+                      "value": {
+                        "displayOrder": 11,
+                        "title": "Header value",
+                        "description": "The value of the header on the child MIME message part",
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "additionalItems": false
+                }
+              },
+              "additionalProperties": false
+            },
+            "additionalItems": false
+          }
+        },
+        "additionalProperties": false
+      },
+      "nextPageToken": {
+        "displayOrder": 16,
+        "title": "Next page token",
+        "description": "The page token to retrieve a specific page of results in the list. The nextPageToken value that is returned in the last record of a retrieve response can be used in the next call.",
+        "type": "string"
+      }
+    },
+    "title": "mail",
+    "additionalProperties": false
+  },
+  "type": "array",
+  "title": "mail"
+}
